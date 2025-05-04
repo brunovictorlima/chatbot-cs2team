@@ -1,0 +1,279 @@
+/* src/components/ChatUI.css */
+
+/* Definindo variáveis CSS para as novas cores */
+:root {
+    --dark-grey: #1a1a1a; /* Cinza muito escuro */
+    --medium-dark-grey: #2a2a2a; /* Cinza um pouco mais claro para contêineres ou elementos */
+    --light-dark-grey: #3a3a3a; /* Cinza mais claro que o medium, para backgrounds de inputs */
+    --border-grey: #444; /* Cinza para bordas */
+    --light-grey-text: #cccccc; /* Cinza claro para texto em fundos escuros */
+    --white: #ffffff;
+    --mustard-yellow: #ffdb58; /* Amarelo Mostarda */
+    --mustard-yellow-darker: #f0c53e; /* Amarelo Mostarda mais escuro para hover */
+    --disabled-bg: #555; /* Fundo para elementos desabilitados */
+    --disabled-text: #999; /* Texto para elementos desabilitados */
+}
+
+
+/* Estilos globais básicos para o corpo da página */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    background-color: var(--dark-grey); /* Fundo escuro para o corpo */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    box-sizing: border-box;
+    color: var(--white);
+}
+
+/* Container principal do chat */
+.chat-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 450px;
+    height: 85vh;
+    border: 1px solid var(--border-grey);
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: var(--medium-dark-grey); /* Fundo cinza médio escuro para o contêiner */
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    margin: 20px;
+    box-sizing: border-box;
+}
+
+/* Área de exibição das mensagens */
+.chat-box {
+    flex-grow: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Estilo para cada linha de mensagem */
+.chat-message {
+    display: flex;
+    margin-bottom: 10px;
+    max-width: 85%;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Alinhamento para mensagens do usuário */
+.chat-message.user {
+    justify-content: flex-end;
+    margin-left: auto;
+}
+
+/* Alinhamento para mensagens do bot */
+.chat-message.bot {
+    justify-content: flex-start;
+    margin-right: auto;
+}
+
+/* Estilo do balão de mensagem */
+.chat-bubble {
+    padding: 10px 15px;
+    border-radius: 18px;
+    line-height: 1.4;
+    font-size: 0.95em;
+    white-space: pre-wrap;
+}
+
+/* Estilo do balão para mensagens do usuário */
+.chat-message.user .chat-bubble {
+    background-color: var(--white);
+    color: var(--dark-grey);
+}
+
+/* Estilo do balão para mensagens do bot */
+.chat-message.bot .chat-bubble {
+    background-color: var(--dark-grey);
+    color: var(--white);
+    border: 1px solid var(--border-grey);
+}
+
+/* Estilos para as opções de menu renderizadas como BOTÕES */
+.chat-options-buttons {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Estilo para cada botão de opção */
+.chat-option-button {
+    padding: 10px;
+    border: 1px solid var(--border-grey);
+    border-radius: 5px;
+    background-color: var(--medium-dark-grey); /* Fundo do botão mais claro que o balão */
+    color: var(--white);
+    cursor: pointer;
+    text-align: left;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    font-size: 0.9em;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.chat-option-button:hover {
+    background-color: var(--mustard-yellow);
+    color: var(--dark-grey);
+    border-color: var(--mustard-yellow);
+}
+
+/* Estilos para opções de menu renderizadas como TEXTO simples */
+.chat-options-text {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    font-size: 0.9em;
+    color: var(--light-grey-text);
+    white-space: pre-wrap;
+}
+
+
+/* Área de input e botão */
+.chat-input {
+    display: flex;
+    padding: 10px;
+    border-top: 1px solid var(--border-grey); /* Borda superior */
+    background-color: var(--dark-grey); /* <-- Fundo da área de input mais escuro */
+    box-sizing: border-box;
+    align-items: center; /* Centraliza verticalmente input e botão */
+}
+
+.chat-input input {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid var(--border-grey);
+    border-radius: 20px;
+    margin-right: 10px;
+    font-size: 1em;
+    outline: none;
+    background-color: var(--light-dark-grey); /* <-- Fundo do input um pouco mais claro que a área */
+    color: var(--white);
+    box-sizing: border-box;
+    line-height: 1.4; /* Ajusta line-height para centralizar texto verticalmente */
+}
+
+.chat-input input::placeholder {
+    color: var(--light-grey-text); /* Cor do placeholder */
+    opacity: 1; /* Garante que a cor do placeholder seja visível */
+}
+
+.chat-input input:focus {
+     border-color: var(--mustard-yellow);
+     box-shadow: 0 0 5px var(--mustard-yellow);
+}
+
+.chat-input button {
+    padding: 10px 15px;
+    border: none;
+    background-color: var(--mustard-yellow); /* <-- Botão com cor de destaque */
+    color: var(--dark-grey); /* <-- Texto escuro no botão de destaque */
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.2s ease, color 0.2s ease;
+    height: 40px; /* <-- Altura fixa para alinhar com o input arredondado */
+    display: flex; /* Para centralizar o texto do botão */
+    justify-content: center;
+    align-items: center;
+}
+
+.chat-input button:hover {
+    background-color: var(--mustard-yellow-darker); /* Versão mais escura no hover */
+    color: var(--dark-grey);
+}
+
+/* Estilos para input e botão desabilitados */
+.chat-input input:disabled,
+.chat-input button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+    background-color: var(--disabled-bg);
+    color: var(--disabled-text);
+    border-color: var(--disabled-bg);
+}
+
+.chat-input input:disabled::placeholder {
+     color: var(--disabled-text);
+}
+
+
+/* Responsividade */
+
+/* Tablets (largura maior que 400px até 768px) */
+@media (min-width: 401px) and (max-width: 768px) {
+    .chat-container {
+        width: 90%;
+        height: 90vh;
+        max-width: 600px;
+        margin: 20px auto;
+    }
+
+    .chat-box {
+        padding: 20px;
+    }
+
+    .chat-message {
+        max-width: 80%;
+    }
+
+    .chat-bubble {
+        font-size: 1em;
+    }
+
+    .chat-input input,
+    .chat-input button {
+        font-size: 1.1em;
+    }
+
+     .chat-input {
+        padding: 15px;
+    }
+     .chat-input button {
+         height: 45px; /* Ajusta altura do botão para tela maior */
+     }
+}
+
+/* Desktops (largura maior que 769px) */
+@media (min-width: 769px) {
+     
+    .chat-container {
+        width: 100%;
+        height: 85vh;
+        max-width: 450px;
+        margin: 20px auto;
+    }
+
+    .chat-box {
+        padding: 25px;
+    }
+
+     .chat-message {
+        max-width: 75%;
+     }
+
+    .chat-bubble {
+         font-size: 1em;
+    }
+
+    .chat-input {
+        padding: 20px;
+    }
+
+    .chat-input input,
+    .chat-input button {
+        font-size: 1em;
+    }
+     .chat-input button {
+         height: 40px; /* Mantém altura para desktop */
+     }
+}
